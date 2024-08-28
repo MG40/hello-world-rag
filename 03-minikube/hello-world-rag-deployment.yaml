@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-rag-deployment
+spec:
+  replicas: 1 # Number of pods to run
+  selector:
+    matchLabels:
+      app: hello-world-rag
+  template:
+    metadata:
+      labels:
+        app: hello-world-rag
+    spec:
+      containers:
+      - name: hello-world-rag
+        # If you used Minikube's Docker daemon:
+        image: gmadhavi/hello-world-rag:latest 
+        # If you pushed to Docker Hub:
+        # image: <your-dockerhub-username>/hello-world-rag:latest
+        ports:
+        - containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-rag-service
+spec:
+  selector:
+    app: hello-world-rag
+  ports:
+  - protocol: TCP
+    port: 5000 # Service port
+    targetPort: 5000 # Container port
+  type: NodePort # Expose the service on a random port on each node

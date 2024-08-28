@@ -16,7 +16,7 @@ We will also see how to access RAG application from curl.
       - This is to pick Dockerfile by default.
   - To run the docker image, use
     - `docker run -p 5000:80 hello-world-rag`
-- From your terminal, you can run "curl -X POST -H "Content-Type: application/json" -d '{"query": "What does RAG stand for?"}' http://localhost:5000/ask"
+- From another  terminal, you can run `curl -X POST -H "Content-Type: application/json" -d '{"query": "What does RAG stand for?"}' http://localhost:5000/ask`
 
 
 ### Well done! You created and ran the program from a docker container.
